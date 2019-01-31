@@ -31,10 +31,25 @@ public class recursion{
         }
         return 0;
     }
-    
+
 
     /*As Per classwork*/
-    public static ArrayList<Integer> makeAllSums(){
+    public static ArrayList<Integer> makeAllSums(int n){
+        // 1   2  tot
+        // T   T  3
+        // T   F  1
+        // F   T  2
+        // F   F  0
+        //vvvvvvvvvv number of possiblilites is 2^n
+        // 1   2   3  tot
+        // T   T   T   6
+        // T   F   F   1
+        // F   T   F   2
+        // F   F   T   3
+        // T   T   F   3
+        // F   T   T   5
+        // T   F   T   4
+        // F   F   F   0
     }
 
 }
