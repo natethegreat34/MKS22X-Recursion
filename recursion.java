@@ -35,6 +35,7 @@ public class recursion{
 
     /*As Per classwork*/
     public static ArrayList<Integer> makeAllSums(int n){
+            ArrayList<Integer> as = new ArrayList<Integer>(2^n);
         // 1   2  tot
         // T   T  3
         // T   F  1
@@ -50,6 +51,21 @@ public class recursion{
         // F   T   T   5
         // T   F   T   4
         // F   F   F   0
+        // maybe I need a wrapper that takes n
+        // if I do 3 + 2 + 1
+        // and then do the same for 2
+        // 2 + 1
+        // it is like the 3 is not included so this should work
+        if (n == 0){
+            return as;
+        }
+        as.add(rap (n));
+        makeAllSums(n - 1);
     }
-
+    public static int rap (int n){
+        if (n != 0){
+        return n + rap (n - 1);
+    }
+    else return 0;
+}
 }
