@@ -5,6 +5,7 @@ public class recursion{
         System.out.println(fib(4));
         System.out.println(makeAllSums(3));
     }
+public static ArrayList<Integer> as = new ArrayList<Integer>();
     /*You may write additional private methods */
 
     /*Recursively find the sqrt using Newton's approximation
@@ -45,7 +46,8 @@ public class recursion{
 
     /*As Per classwork*/
     public static ArrayList<Integer> makeAllSums(int n){
-            ArrayList<Integer> as = new ArrayList<Integer>(2^n);
+            // as.add(2);
+            // System.out.println(as);
         // 1   2  tot
         // T   T  3
         // T   F  1
@@ -77,15 +79,15 @@ public class recursion{
         // F   T   T   5
         // F   F   T   3
 
-        as.add(rap (n));
-        System.out.println(as);
+        as.add(0, rap (n));
+        // System.out.println(as);
         makeAllSums(n - 1);
     }
     return as;
 }
     public static int rap (int n){
-        if (n != 0){
-            System.out.println(n);
+        if (n >= 0){
+            // System.out.println(n);
         return n + rap (n - 1);
     }
     else return 0;
