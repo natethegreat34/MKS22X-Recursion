@@ -6,7 +6,7 @@ public class recursion{
         System.out.println(makeAllSums(3));
     }
 public static ArrayList<Integer> as = new ArrayList<Integer>();
-public static int target;
+public static int target = 0;
     /*You may write additional private methods */
 
     /*Recursively find the sqrt using Newton's approximation
@@ -52,29 +52,17 @@ public static int target;
         }
         int [] nums = new int [n * n];
         int [] hold = makelist(n, nums, 0);
-        if (helper(0, hold,  )
-
-        //vvvvvvvvvv number of possiblilites is 2^n
-        // 1   2   3  tot
-        // T   T   T   6
-        // T   F   F   1
-        // F   T   F   2
-        // F   F   T   3
-        // T   T   F   3
-        // F   T   T   5
-        // T   F   T   4
-        // F   F   F   0
-        // maybe I need a wrapper that takes n
-        // if I do 3 + 2 + 1
-        // and then do the same for 2
-        // 2 + 1
-        // it is like the 3 is not included so this should work
-        if (n != 0){
-
-
+        if (helper(0, hold, target, 0)){
+            as.add(target);
+        }
+        target ++;
+        if (target < n * n){
+        makeAllSums(n);
+    }
     return as;
-}}
+}
 public static int [] makelist (int n, int [] nums, int start){
+    // makes an int array of all numbers between the n and 0
     nums [start] = n;
     if (n > 0){
     makelist(n-1, nums, start + 1);
