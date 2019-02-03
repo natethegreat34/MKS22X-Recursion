@@ -48,31 +48,27 @@ public static int target = 0;
 
     /*As Per classwork*/
     public static ArrayList<Integer> makeAllSums(int n){
-        if (n != 0){
-            int [] nums = new int [2*n];
-            int [] hold = makelist(n, nums, 0);
-            if (helper(0, hold, target, 0)){
-                as.add(target);
-            }
-            target ++;
-            if (target < n * n){
-                makeAllSums(n);
-            }
+        if (n == 0){
+            as.add(0);
+            return as;
         }
+        help (n, 0);
         return as;
 }
 
-public static int [] makelist (int n, int [] nums, int start){
-    // makes an int array of all numbers between the n and 0
-    nums [start] = n;
-    if (n > 0){
-    makelist(n-1, nums, start + 1);
+public static void help(int a, int sum){
+    if (a != 0){
+    int sun = a + sum;
+    help (a - 1, sum);
+    help (a - 1, sun);
 }
-return nums;
+as.add(sum);
 }
 
+
+
 // need a return n + function (n - 1) and just function (n - 1)
-public static void otherhelp(int a, int [] nums){
+public static int otherhelp(int a, boolean fear, int total){
     //               3
     //        with /   \without
     //           2      2
@@ -80,13 +76,32 @@ public static void otherhelp(int a, int [] nums){
     //        1  1    1  1
     //       /\  /\  /\  /\
     //      6 5 4 3 3 2 1 0
-if ( a != 0){
-    as.add(a);
+if ( fear){
+    total = total + a;
 }
-// only deal with end results
+return total;}
+// only deal with end results, need boolean as parameter
 
+// add (3, true) helper, returns int to add to arraylist
+//add (int n  , boolean fear){
+// if (n != 0){
+// if (fear){
+//     a = n + add ((n - 1), true);
+//     b = n + add ((n - 1), false);
+// }
+// else{
 
 }
+// }
+// }
+// public static int [] makelist (int n, int [] nums, int start){
+//     // makes an int array of all numbers between the n and 0
+//     nums [start] = n;
+//     if (n > 0){
+//     makelist(n-1, nums, start + 1);
+// }
+// return nums;
+// }
 // public static boolean helper(int start, int [] nums, int target, int current) {
 // // checks to see if target can be reached with given numbers
 //   if (current == target){
@@ -99,4 +114,3 @@ if ( a != 0){
 //   start ++;
 //   return helper(start, nums, target, current + nums[oldstart]) || helper(start, nums, target, current);
 // }
-}
