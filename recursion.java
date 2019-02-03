@@ -3,10 +3,11 @@ public class recursion{
     public static void main(String[] args) {
         System.out.println(sqrt(169, .0001));
         System.out.println(fib(4));
-        System.out.println(makeAllSums(5));
+        System.out.println(makeAllSums(3));
     }
 public static ArrayList<Integer> as = new ArrayList<Integer>();
 public static int target = 0;
+
     /*You may write additional private methods */
 
     /*Recursively find the sqrt using Newton's approximation
@@ -47,21 +48,20 @@ public static int target = 0;
 
     /*As Per classwork*/
     public static ArrayList<Integer> makeAllSums(int n){
-        if (n == 0){
-            as.add(0);
-            return as;
+        if (n != 0){
+            int [] nums = new int [2*n];
+            int [] hold = makelist(n, nums, 0);
+            if (helper(0, hold, target, 0)){
+                as.add(target);
+            }
+            target ++;
+            if (target < n * n){
+                makeAllSums(n);
+            }
         }
-        int [] nums = new int [n * n];
-        int [] hold = makelist(n, nums, 0);
-        if (helper(0, hold, target, 0)){
-            as.add(target);
-        }
-        target ++;
-        if (target < n * n){
-        makeAllSums(n);
-    }
-    return as;
+        return as;
 }
+
 public static int [] makelist (int n, int [] nums, int start){
     // makes an int array of all numbers between the n and 0
     nums [start] = n;
@@ -71,16 +71,32 @@ public static int [] makelist (int n, int [] nums, int start){
 return nums;
 }
 
-public static boolean helper(int start, int [] nums, int target, int current) {
-// checks to see if target can be reached with given numbers
-  if (current == target){
-    return true;
-  }
-  if (start == nums.length){
-    return false;
-  }
-  int oldstart = start;
-  start ++;
-  return helper(start, nums, target, current + nums[oldstart]) || helper(start, nums, target, current);
+// need a return n + function (n - 1) and just function (n - 1)
+public static void otherhelp(int a, int [] nums){
+    //               3
+    //        with /   \without
+    //           2      2
+    //        w/ \wo  w/ \wo
+    //        1  1    1  1
+    //       /\  /\  /\  /\
+    //      6 5 4 3 3 2 1 0
+if ( a != 0){
+    as.add(a);
 }
+// only deal with end results
+
+
+}
+// public static boolean helper(int start, int [] nums, int target, int current) {
+// // checks to see if target can be reached with given numbers
+//   if (current == target){
+//     return true;
+//   }
+//   if (start == nums.length){
+//     return false;
+//   }
+//   int oldstart = start;
+//   start ++;
+//   return helper(start, nums, target, current + nums[oldstart]) || helper(start, nums, target, current);
+// }
 }
