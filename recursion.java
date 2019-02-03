@@ -3,7 +3,7 @@ public class recursion{
     public static void main(String[] args) {
         System.out.println(sqrt(169, .0001));
         System.out.println(fib(4));
-        System.out.println(makeAllSums(3));
+        System.out.println(makeAllSums(5));
     }
 public static ArrayList<Integer> as = new ArrayList<Integer>();
 public static int target = 0;
@@ -48,6 +48,7 @@ public static int target = 0;
     /*As Per classwork*/
     public static ArrayList<Integer> makeAllSums(int n){
         if (n == 0){
+            as.add(0);
             return as;
         }
         int [] nums = new int [n * n];
@@ -70,7 +71,8 @@ public static int [] makelist (int n, int [] nums, int start){
 return nums;
 }
 
-public int helper(int start, int [] nums, int target, int current) {
+public static boolean helper(int start, int [] nums, int target, int current) {
+// checks to see if target can be reached with given numbers
   if (current == target){
     return true;
   }
