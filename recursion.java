@@ -1,18 +1,17 @@
 import java.util.*;
-public class recursion{
+public class Recursion{
     public static void main(String[] args) {
         System.out.println(sqrt(169, .0001));
         System.out.println(fib(4));
-        System.out.println(makeAllSums(10));
+        System.out.println(makeAllSums(5));
     }
-public static ArrayList<Integer> as = new ArrayList<Integer>();
-public static int target = 0;
+
+
     /*You may write additional private methods */
 
     /*Recursively find the sqrt using Newton's approximation
      *tolerance is the allowed percent error the squared answer is away from n.
      *precondition: n is non-negative
-
     */
     public static double sqrt(double n, double tolerance){
             double g = n/3;
@@ -47,47 +46,65 @@ public static int target = 0;
 
     /*As Per classwork*/
     public static ArrayList<Integer> makeAllSums(int n){
-        if (n == 0){
-            as.add(0);
-            return as;
-        }
-        int [] nums = new int [n * n];
-        int [] hold = makelist(n, nums, 0);
-        int yes = helper(0, hold, target, 0);
-        if ( yes > 0){
-            adder(yes , target);
-        }
-        target ++;
-        if (target < n * n){
-        makeAllSums(n);
-    }
-    return as;
-}
-public static int [] makelist (int n, int [] nums, int start){
-    // makes an int array of all numbers between the n and 0
-    nums [start] = n;
-    if (n > 0){
-    makelist(n-1, nums, start + 1);
-}
-return nums;
-}
-public static void adder(int n, int num){
-    if (n != 0){
-        as.add(num);
-    adder(n-1, num);
+    ArrayList<Integer> as = new ArrayList<Integer>();
+        help (n, 0, as);
+        return as;
 }
 
+public static void help(int a, int sum, ArrayList held){
+    //realized that the arraylist was being changed because it was gobal and not a parameter,
+    //so it was being altered and not reverted back after each one.
+    // thus, i was not obtaining the information i thought I was
+    // changed it to a parameter, and went bakc to my previous code and it works
+    if (a > 0){
+    // makes the arraylist if it starts with a positive number
+    help (a - 1, sum, held);
+    help (a - 1, a + sum, held);
 }
-public static int helper (int start, int [] nums, int target, int current) {
-// checks to see if target can be reached with given numbers
-  if (current == target){
-    return 1;
-  }
-  if (start == nums.length){
-    return 0;
-  }
-  int oldstart = start;
-  start ++;
-  return helper(start, nums, target, current + nums[oldstart]) + helper(start, nums, target, current);
+    else if (a < 0){
+    // makes the arraylist if it starts with a negative number
+    help (a + 1, sum, held);
+    help (a + 1, a + sum, held);
+}
+else held.add(sum);
 }
 }
+
+
+
+// need a return n + function (n - 1) and just function (n - 1)
+
+// only deal with end results, need boolean as parameter
+
+// add (3, true) helper, returns int to add to arraylist
+//add (int n  , boolean fear){
+// if (n != 0){
+// if (fear){
+//     a = n + add ((n - 1), true);
+//     b = n + add ((n - 1), false);
+// }
+// else{
+
+
+// }
+// }
+// public static int [] makelist (int n, int [] nums, int start){
+//     // makes an int array of all numbers between the n and 0
+//     nums [start] = n;
+//     if (n > 0){
+//     makelist(n-1, nums, start + 1);
+// }
+// return nums;
+// }
+// public static boolean helper(int start, int [] nums, int target, int current) {
+// // checks to see if target can be reached with given numbers
+//   if (current == target){
+//     return true;
+//   }
+//   if (start == nums.length){
+//     return false;
+//   }
+//   int oldstart = start;
+//   start ++;
+//   return helper(start, nums, target, current + nums[oldstart]) || helper(start, nums, target, current);
+// }
