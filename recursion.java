@@ -46,13 +46,12 @@ public static ArrayList<Integer> as = new ArrayList<Integer>();
 
     /*As Per classwork*/
     public static ArrayList<Integer> makeAllSums(int n){
-            // as.add(2);
-            // System.out.println(as);
-        // 1   2  tot
-        // T   T  3
-        // T   F  1
-        // F   T  2
-        // F   F  0
+        int [] nums = new int [n * n]
+        makelist(n, nums, 0);
+        if (n == 0){
+            return 0;
+        }
+
         //vvvvvvvvvv number of possiblilites is 2^n
         // 1   2   3  tot
         // T   T   T   6
@@ -69,27 +68,25 @@ public static ArrayList<Integer> as = new ArrayList<Integer>();
         // 2 + 1
         // it is like the 3 is not included so this should work
         if (n != 0){
-        // only works for half
-        // 1   2   3  tot
-        // T   T   T   6
-        // T   T   F   3
-        // T   F   F   1
-        // F   F   F   0
-        //If done other way
-        // F   T   T   5
-        // F   F   T   3
 
-        as.add(0, rap (n));
-        // System.out.println(as);
-        makeAllSums(n - 1);
-    }
+
     return as;
+}}
+public static int [] makelist (int n, int [] nums, int start){
+    nums [start] = n;
+    if (n > 0){
+    makelist(n-1, nums, start + 1);
 }
-    public static int rap (int n){
-        if (n >= 0){
-            // System.out.println(n);
-        return n + rap (n - 1);
-    }
-    else return 0;
+
+public boolean helper(int start, int [] nums, int target, int current) {
+  if (current == target){
+    return true;
+  }
+  if (start == nums.length){
+    return false;
+  }
+  int oldstart = start;
+  start ++;
+  return helper(start, nums, target, current + nums[oldstart]) || helper(start, nums, target, current);
 }
 }
