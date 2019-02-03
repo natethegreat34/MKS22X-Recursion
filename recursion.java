@@ -3,11 +3,10 @@ public class recursion{
     public static void main(String[] args) {
         System.out.println(sqrt(169, .0001));
         System.out.println(fib(4));
-        System.out.println(makeAllSums(3));
+        System.out.println(makeAllSums(10));
     }
 public static ArrayList<Integer> as = new ArrayList<Integer>();
-
-
+public static int target = 0;
     /*You may write additional private methods */
 
     /*Recursively find the sqrt using Newton's approximation
@@ -52,76 +51,43 @@ public static ArrayList<Integer> as = new ArrayList<Integer>();
             as.add(0);
             return as;
         }
-        help (n, n, 0, 0);
-        return as;
+        int [] nums = new int [n * n];
+        int [] hold = makelist(n, nums, 0);
+        int yes = helper(0, hold, target, 0);
+        if ( yes > 0){
+            adder(yes , target);
+        }
+        target ++;
+        if (target < n * n){
+        makeAllSums(n);
+    }
+    return as;
+}
+public static int [] makelist (int n, int [] nums, int start){
+    // makes an int array of all numbers between the n and 0
+    nums [start] = n;
+    if (n > 0){
+    makelist(n-1, nums, start + 1);
+}
+return nums;
+}
+public static void adder(int n, int num){
+    if (n != 0){
+        as.add(num);
+    adder(n-1, num);
 }
 
-public static void help(int sum, int n){
-sum = sum + n;
-//     if (a != 0){
-//     int sun = a + sum;
-//     if ( a == b){
-//     help (a - 1,b, sum, sun);
-// }
-// // System.out.println(a);
-//     if (a - 1 == b){
-//     help (a, b - 1, sun, sun);
-//     // System.out.println("lol" + a);
-// }
-// }
-// System.out.println(sum);
-// as.add(sum);
-
-0 + n --> 0 + n + n -1 or 0 + n
-0 --> 0 or n - 1
 }
-
-
-
-// // need a return n + function (n - 1) and just function (n - 1)
-// public static int otherhelp(int a, boolean fear, int total){
-//     //               3
-//     //        with /   \without
-//     //           2      2
-//     //        w/ \wo  w/ \wo
-//     //        1  1    1  1
-//     //       /\  /\  /\  /\
-//     //      6 5 4 3 3 2 1 0
-// if ( fear){
-//     total = total + a;
-// }
-// return total;}
-// // only deal with end results, need boolean as parameter
-
-// add (3, true) helper, returns int to add to arraylist
-//add (int n  , boolean fear){
-// if (n != 0){
-// if (fear){
-//     a = n + add ((n - 1), true);
-//     b = n + add ((n - 1), false);
-// }
-// else{
-
+public static int helper (int start, int [] nums, int target, int current) {
+// checks to see if target can be reached with given numbers
+  if (current == target){
+    return 1;
+  }
+  if (start == nums.length){
+    return 0;
+  }
+  int oldstart = start;
+  start ++;
+  return helper(start, nums, target, current + nums[oldstart]) + helper(start, nums, target, current);
 }
-// }
-// }
-// public static int [] makelist (int n, int [] nums, int start){
-//     // makes an int array of all numbers between the n and 0
-//     nums [start] = n;
-//     if (n > 0){
-//     makelist(n-1, nums, start + 1);
-// }
-// return nums;
-// }
-// public static boolean helper(int start, int [] nums, int target, int current) {
-// // checks to see if target can be reached with given numbers
-//   if (current == target){
-//     return true;
-//   }
-//   if (start == nums.length){
-//     return false;
-//   }
-//   int oldstart = start;
-//   start ++;
-//   return helper(start, nums, target, current + nums[oldstart]) || helper(start, nums, target, current);
-// }
+}
