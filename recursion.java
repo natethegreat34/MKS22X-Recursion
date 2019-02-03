@@ -6,7 +6,7 @@ public class recursion{
         System.out.println(makeAllSums(3));
     }
 public static ArrayList<Integer> as = new ArrayList<Integer>();
-public static int target = 0;
+
 
     /*You may write additional private methods */
 
@@ -52,35 +52,46 @@ public static int target = 0;
             as.add(0);
             return as;
         }
-        help (n, 0);
+        help (n, n, 0, 0);
         return as;
 }
 
-public static void help(int a, int sum){
-    if (a != 0){
-    int sun = a + sum;
-    help (a - 1, sum);
-    help (a - 1, sun);
-}
-as.add(sum);
+public static void help(int sum, int n){
+sum = sum + n;
+//     if (a != 0){
+//     int sun = a + sum;
+//     if ( a == b){
+//     help (a - 1,b, sum, sun);
+// }
+// // System.out.println(a);
+//     if (a - 1 == b){
+//     help (a, b - 1, sun, sun);
+//     // System.out.println("lol" + a);
+// }
+// }
+// System.out.println(sum);
+// as.add(sum);
+
+0 + n --> 0 + n + n -1 or 0 + n
+0 --> 0 or n - 1
 }
 
 
 
-// need a return n + function (n - 1) and just function (n - 1)
-public static int otherhelp(int a, boolean fear, int total){
-    //               3
-    //        with /   \without
-    //           2      2
-    //        w/ \wo  w/ \wo
-    //        1  1    1  1
-    //       /\  /\  /\  /\
-    //      6 5 4 3 3 2 1 0
-if ( fear){
-    total = total + a;
-}
-return total;}
-// only deal with end results, need boolean as parameter
+// // need a return n + function (n - 1) and just function (n - 1)
+// public static int otherhelp(int a, boolean fear, int total){
+//     //               3
+//     //        with /   \without
+//     //           2      2
+//     //        w/ \wo  w/ \wo
+//     //        1  1    1  1
+//     //       /\  /\  /\  /\
+//     //      6 5 4 3 3 2 1 0
+// if ( fear){
+//     total = total + a;
+// }
+// return total;}
+// // only deal with end results, need boolean as parameter
 
 // add (3, true) helper, returns int to add to arraylist
 //add (int n  , boolean fear){
