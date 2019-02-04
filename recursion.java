@@ -1,7 +1,7 @@
 import java.util.*;
 public class Recursion{
     public static void main(String[] args) {
-        System.out.println(sqrt(169, 100));
+        System.out.println(sqrt(0, .00001));
         System.out.println(sqrt(25, 100));
         System.out.println(sqrt(169, .00001));
         System.out.println(sqrt(25, .00001));
@@ -11,7 +11,7 @@ public class Recursion{
         System.out.println(makeAllSums(0));
         System.out.println(makeAllSums(1));
         System.out.println(makeAllSums(2));
-        System.out.println(makeAllSums(3));
+        System.out.println(makeAllSums(-3));
     }
 
 
