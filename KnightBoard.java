@@ -39,96 +39,63 @@ public String toString(){
 // @throws IllegalArgumentException when either parameter is negative
 //  or out of bounds.
 public boolean solve(int startingRow, int startingCol){
-    return solver(startingRow,startingCol, -1, -1, 0);
+    return solver(startingRow,startingCol, 0);
 }
-private boolean solver( int r, int c, int prevr, int prevc, int n){
+private boolean solver( int r, int c, int n){
+    if (r < 0 || r > rows - 1 || c < 0 || c > cols - 1){
+        return false;
+    }
     // if prevr and prevc are equal to one of the options, make it false
     // if the number of moves equals the area, then we are done and return true
     if (n == rows * cols){
         num ++;
+        return true;
     }
     data[r][c] = n + 1;
     //   __ __
     //  |
     //  x
     // once the knight moves, its other options are pu ton hold whil it finishes
-    if (r + 1 < rows ){
-      if (c + 2 < cols){
-          if (r + 1 != prevr || c + 2 != prevc){
-          if (!(data[r + 1] [c +2]== 1)){
-              return solver (r + 1, c + 2,r,c, n+1);
-          }
-      }
-  }
+    return solver (r + 1, c + 2, n+1) ||
+    solver(r + 1,c - 2, n+1) ||
+    solver(r + 2,c + 1, n+1) ||
+    solver(r + 2,c - 1, n+1) ||
+    solver(r - 1,c + 2, n+1) ||
+    solver(r - 1,c - 2, n+1) ||
+    solver(r - 2,c + 1, n+1) ||
+    solver(r - 2,c - 1, n+1);
+
      //   __ __
      //        |
      //        x
-      if (c - 2  >= 0){
-          if (!(data[r + 1] [c - 2]== 1)){
-              return solver (r + 1, c - 2,r,c, n+1);
-          }
-      }
-    }
+
     //   __
     //  |
     //  |
     //  x
-    if (r + 2 < rows){
-      if (c + 1 < cols){
-          if (!(data[r + 2] [c +1]== 1)){
-       return solver(r + 2,c + 1,r,c,n+1);
-      }
-    }
+
       //  __
       //    |
       //    |
       //    x
-      if (c - 1  >= 0){
-          if (!(data[r + 1] [c - 1]== 1)){
-       return solver(r + 2,c - 1,r,c,n+1);
-        }
-        }
-    }
+
     //  x
     //  |
     //   __ __
-    if (r - 1 >= 0){
-      if (c + 2 < cols){
-          if (!(data[r - 1] [c + 2]== 1)){
-       return solver(r - 1,c + 2,r,c,n+1);
-      }
-  }
+
       //        x
       //        |
       //   __ __
-      if (c - 2  >= 0){
-          if (!(data[r - 1] [c - 2]== 1)){
-       return solver(r - 1,c - 2,r,c,n+1);
-      }
-    }
-}
+
     //  x
     //  |
     //  |
     //   __
-    if (r - 2 >= 0){
-      if (c + 1 < cols){
-          if (!(data[r - 2] [c + 1]== 1)){
-              return solver(r - 2,c + 1,r,c,n+1);
-      }
-  }
+
       //     x
       //     |
       //     |
       //   __
-      if (c - 1  >= 0){
-          if (!(data[r + 1] [c - 1]== 1)){
-      return solver(r - 2,c - 1,r,c, n+1);
-      }
-    }
-    }
-    data[r][c] = 0 ;
-    return solver(prevr, prevc, r,c, n - 1);
   }
 public boolean checker(){
     for (int r = 0; r < rows; r ++){
