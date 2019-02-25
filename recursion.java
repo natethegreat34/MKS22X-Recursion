@@ -1,5 +1,5 @@
 import java.util.*;
-public class Recursion{
+public class recursion{
     public static void main(String[] args) {
         System.out.println(sqrt(0, .00001));
         System.out.println(sqrt(25, 100));
@@ -14,7 +14,9 @@ public class Recursion{
         System.out.println(makeAllSums(-3));
     }
 
-
+public recursion  (){
+    ;
+}
     /*You may write additional private methods */
 
     /*Recursively find the sqrt using Newton's approximation
